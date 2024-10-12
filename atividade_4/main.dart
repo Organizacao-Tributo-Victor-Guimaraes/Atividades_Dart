@@ -13,7 +13,8 @@ void criaarquivo(String nomeArquivo){
     texto.add(linha);
   }
 
-  arquivo.writeAsStringSync(texto.join('\n'));
+  arquivo.writeAsStringSync(texto.join('\n'), );
+  print("texto gravado em: $nomeArquivo.");
 }
 
 void lerarquivo(String nomeArquivo) {
