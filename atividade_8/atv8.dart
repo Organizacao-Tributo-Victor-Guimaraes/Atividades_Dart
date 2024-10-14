@@ -1,15 +1,12 @@
 import 'dart:io'; 
 
-// Classe que representa um contato
 class Contato {
   String nome;
   String telefone;
   String email;
 
-  // Construtor da classe Contato
   Contato(this.nome, this.telefone, this.email);
 
-  // Método para formatar a exibição do contato
   @override
   String toString() {
     return 'Nome: $nome, Telefone: $telefone, E-mail: $email';
@@ -17,10 +14,8 @@ class Contato {
 }
 
 void main() {
-  // Lista que armazena todos os contatos
   List<Contato> agenda = [];
 
-  // Loop infinito para o menu principal
   while (true) {
     print('\n--- Menu da Agenda ---');
     print('1. Adicionar contato');
@@ -29,45 +24,41 @@ void main() {
     print('4. Excluir contato');
     print('5. Sair');
     stdout.write('Escolha uma opção: ');
-    String? opcao = stdin.readLineSync(); // Lê a opção do usuário
+    String? opcao = stdin.readLineSync();
 
-    // Estrutura de controle para executar a ação de acordo com a opção escolhida
     switch (opcao) {
       case '1':
-        adicionarContato(agenda); // Adiciona um novo contato
+        adicionarContato(agenda); 
         break;
       case '2':
-        listarContatos(agenda); // Lista todos os contatos
+        listarContatos(agenda); 
         break;
       case '3':
-        editarContato(agenda); // Edita um contato existente
+        editarContato(agenda);
         break;
       case '4':
-        excluirContato(agenda); // Exclui um contato
+        excluirContato(agenda); 
         break;
       case '5':
         print('Saindo...');
-        return; // Encerra o programa
+        return; 
       default:
-        print('Opção inválida, tente novamente.'); // Caso a opção seja inválida
+        print('Opção inválida, tente novamente.');
     }
   }
 }
 
-// Função para adicionar um novo contato
 void adicionarContato(List<Contato> agenda) {
   stdout.write('Digite o nome do contato: ');
-  String? nome = stdin.readLineSync(); // Lê o nome do usuário
+  String? nome = stdin.readLineSync(); 
 
   stdout.write('Digite o telefone do contato: ');
-  String? telefone = stdin.readLineSync(); // Lê o telefone do usuário
+  String? telefone = stdin.readLineSync(); 
 
   stdout.write('Digite o e-mail do contato: ');
-  String? email = stdin.readLineSync(); // Lê o e-mail do usuário
+  String? email = stdin.readLineSync();
 
-  // Verifica se todos os campos foram preenchidos
   if (nome != null && telefone != null && email != null) {
-    // Cria um novo objeto Contato e o adiciona à lista
     Contato contato = Contato(nome, telefone, email);
     agenda.add(contato);
     print('Contato adicionado com sucesso!');
@@ -76,48 +67,43 @@ void adicionarContato(List<Contato> agenda) {
   }
 }
 
-// Função para listar todos os contatos
 void listarContatos(List<Contato> agenda) {
   if (agenda.isEmpty) {
-    print('A agenda está vazia.'); // Verifica se a lista está vazia
+    print('A agenda está vazia.'); 
   } else {
     print('\n--- Lista de Contatos ---');
-    // Itera sobre a lista de contatos e os imprime
     for (int i = 0; i < agenda.length; i++) {
-      print('${i + 1}. ${agenda[i]}'); // Formata a exibição com o índice do contato
+      print('${i + 1}. ${agenda[i]}'); 
     }
   }
 }
 
-// Função para editar um contato existente
 void editarContato(List<Contato> agenda) {
-  listarContatos(agenda); // Lista os contatos para o usuário escolher qual editar
+  listarContatos(agenda); 
 
   stdout.write('Digite o número do contato que deseja editar: ');
-  String? input = stdin.readLineSync(); // Lê o número do contato a ser editado
-  int? index = int.tryParse(input ?? ''); // Converte a entrada para um número inteiro
+  String? input = stdin.readLineSync(); 
+  int? index = int.tryParse(input ?? ''); 
 
-  // Verifica se o índice é válido
   if (index != null && index > 0 && index <= agenda.length) {
-    Contato contato = agenda[index - 1]; // Obtém o contato selecionado
+    Contato contato = agenda[index - 1]; 
 
-    // Lê as novas informações do contato, se fornecidas
     stdout.write('Digite o novo nome (atual: ${contato.nome}): ');
     String? novoNome = stdin.readLineSync();
     if (novoNome != null && novoNome.isNotEmpty) {
-      contato.nome = novoNome; // Atualiza o nome do contato
+      contato.nome = novoNome; 
     }
 
     stdout.write('Digite o novo telefone (atual: ${contato.telefone}): ');
     String? novoTelefone = stdin.readLineSync();
     if (novoTelefone != null && novoTelefone.isNotEmpty) {
-      contato.telefone = novoTelefone; // Atualiza o telefone do contato
+      contato.telefone = novoTelefone;
     }
 
     stdout.write('Digite o novo e-mail (atual: ${contato.email}): ');
     String? novoEmail = stdin.readLineSync();
     if (novoEmail != null && novoEmail.isNotEmpty) {
-      contato.email = novoEmail; // Atualiza o e-mail do contato
+      contato.email = novoEmail;
     }
 
     print('Contato atualizado com sucesso!');
@@ -126,17 +112,15 @@ void editarContato(List<Contato> agenda) {
   }
 }
 
-// Função para excluir um contato
 void excluirContato(List<Contato> agenda) {
-  listarContatos(agenda); // Lista os contatos para o usuário escolher qual excluir
+  listarContatos(agenda); 
 
   stdout.write('Digite o número do contato que deseja excluir: ');
-  String? input = stdin.readLineSync(); // Lê o número do contato a ser excluído
-  int? index = int.tryParse(input ?? ''); // Converte a entrada para um número inteiro
+  String? input = stdin.readLineSync(); 
+  int? index = int.tryParse(input ?? ''); 
 
-  // Verifica se o índice é válido
   if (index != null && index > 0 && index <= agenda.length) {
-    agenda.removeAt(index - 1); // Remove o contato da lista
+    agenda.removeAt(index - 1); 
     print('Contato excluído com sucesso!');
   } else {
     print('Contato inválido.');

@@ -1,33 +1,26 @@
 import 'dart:io';
 
-// Funções de conversão
 
-// Celsius para Fahrenheit
 double celsiusParaFahrenheit(double celsius) {
   return (celsius * 9/5) + 32;
 }
 
-// Celsius para Kelvin
 double celsiusParaKelvin(double celsius) {
   return celsius + 273.15;
 }
 
-// Fahrenheit para Celsius
 double fahrenheitParaCelsius(double fahrenheit) {
   return (fahrenheit - 32) * 5/9;
 }
 
-// Fahrenheit para Kelvin
 double fahrenheitParaKelvin(double fahrenheit) {
   return (fahrenheit - 32) * 5/9 + 273.15;
 }
 
-// Kelvin para Celsius
 double kelvinParaCelsius(double kelvin) {
   return kelvin - 273.15;
 }
 
-// Kelvin para Fahrenheit
 double kelvinParaFahrenheit(double kelvin) {
   return (kelvin - 273.15) * 9/5 + 32;
 }
@@ -39,7 +32,6 @@ void main() {
   print("Digite a unidade da temperatura (C para Celsius, F para Fahrenheit, K para Kelvin):");
   String unidade = stdin.readLineSync()!.toUpperCase();
 
-  // Verifica a unidade e chama as funções de conversão apropriadas
   if (unidade == "C") {
     print("${valor}°C equivale a ${celsiusParaFahrenheit(valor)}°F e ${celsiusParaKelvin(valor)}K");
   } else if (unidade == "F") {
